@@ -99,16 +99,16 @@ void Display::fillRect(e_std::e_word x, e_std::e_word y, e_std::e_word width, e_
     int set_width = width;
     int set_height = height;
 
-    if(set_x > set_width) return;
-    if(set_y > set_height) return;
+    if(set_x > m_width) return;
+    if(set_y > m_height) return;
     if(set_x + set_width > m_width) set_width = m_width - set_x; 
     if(set_y + set_height > m_height) set_height = m_height - set_y; 
 
     buffer += set_x + (set_y * m_width);
 
-    for(int pixel_y = set_y; pixel_y < set_y + set_height; pixel_y++)
+    for(int pixel_y = 0; pixel_y < set_height; pixel_y++)
     {
-        for(int pixel_x = set_x; pixel_x < set_x + set_width; pixel_x++)
+        for(int pixel_x = 0; pixel_x < set_width; pixel_x++)
         {
             //Low endian
             e_std::e_byte* pixel_color = (e_std::e_byte*) (buffer + pixel_x);

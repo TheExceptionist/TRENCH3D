@@ -1,5 +1,6 @@
 #include "display.h"
 #include "render.h"
+#include "objects.h"
 #include "defs.h"
 
 int main(int argc, char* argv[])
@@ -17,6 +18,9 @@ int main(int argc, char* argv[])
 	{
 		printf("Could not initialize renderer!\n");
 	}
+
+	Entity player("Lambert", 2, 4);
+	render.setPlayer(&player);
 	
 	#ifdef DEBUG
 	{
@@ -34,6 +38,11 @@ int main(int argc, char* argv[])
 
 		vector4.printStats();
 		vector5.printStats();
+
+		vec3f plane = player.getDir()->rotate2D(90);
+
+		printf("===================");
+		plane.printStats();
 	}
 	#endif
 

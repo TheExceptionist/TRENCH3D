@@ -2,6 +2,9 @@
 #define VECTOR_H
 
 #include "defs.h"
+#include "math.h"
+
+#define PI 3.14159265359
 
 enum VECTOR_POS
 {
@@ -14,7 +17,6 @@ enum VECTOR_POS
 
 namespace e_math
 {
-
     template<class T>
     inline T pow(T number, int pow)
     {
@@ -27,7 +29,30 @@ namespace e_math
 
         return result;
     }
+    //Take the absolute value of a number
+    /*
+        float num - number to take the absolute value of.
+    */
+    inline float abs(float num)
+    {
+        return (num < 0 ? -num : num);
+    }
 
+    //Custom modulo operation, since th ec library's version techincal isn't modulo
+    /*
+        int32 operand1 - operand to (operand1) mod (operand2)
+        int32 operand2 - operand to (operand1) mod (operand2)
+    */
+    inline int modulo(int operand1, int operand2)
+    {
+        int m = (operand1 % operand2);
+        return m < 0 ? (m + operand2) : m;
+    }
+
+    inline double degreeToRad(int degree)
+    {
+        return degree * ( PI / 180);
+    }
 
     template <class T>
     class Vector
@@ -233,6 +258,19 @@ namespace e_math
             printf("Vector - \nX: %d\nY: %d\nZ: %d\n", (int)x, (int)y, (int)z);
         }
 
+
+        //returns the vector equal to the this vector rotated along the y-axis
+        Vector<T> rotate2D(int degree)
+        {
+            double rad = degreeToRad(degree);
+
+            T xx = x * cos(rad) - y * sin(rad);
+            T yy = x * sin(rad) + y * cos(rad);
+            
+            Vector<T> vector(xx, yy, 0);
+            return vector; 
+        }
+
         T getX() const { return x; }
         T getY() const { return y; }
         T getZ() const { return z; }
@@ -246,6 +284,8 @@ namespace e_math
     typedef Vector<int> vec3i;
     typedef Vector<float> vec3f;
     typedef Vector<double> vec3d;
+
+    const vec3i zero_vector();
 }
 
 

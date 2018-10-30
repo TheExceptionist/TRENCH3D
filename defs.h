@@ -25,15 +25,25 @@ namespace e_std
     typedef const char* e_str;
     typedef e_byte e_bool;
 
+    typedef struct color_s color_t;
+
     struct color_s 
     {
         e_byte a;
         e_byte r;
         e_byte g;
         e_byte b;
+
+        color_t& operator/=(int value)
+        {
+            r /= value;
+            g /= value;
+            b /= value;
+
+            return *this;
+        }
     };
 
-    typedef struct color_s color_t;
 }
 
 const e_std::color_t RED = {0xFF, 0xFF, 0, 0};

@@ -1,4 +1,4 @@
-objects = main.o display.o render.o e_math.o
+objects = main.o display.o render.o e_math.o objects.o
 exe_name = TRENCH3D
 include_dir = include
 lib_dir = lib
@@ -9,14 +9,16 @@ $(exe_name) : $(objects)
 	-l $(libs)
 
 $(objects) : defs.h e_math.h
-main.o : main.cpp display.h
+main.o : main.cpp display.h render.h objects.h
 	g++ -c main.cpp
 display.o : display.cpp display.h 
 	g++ -c display.cpp
-render.o : render.cpp render.h 
+render.o : render.cpp render.h display.h objects.h 
 	g++ -c render.cpp
 e_math.o : e_math.cpp e_math.h
 	g++ -c e_math.cpp
+objects.o : objects.cpp objects.h
+	g++ -c objects.cpp
 
 .PHONY : clean \
 	 reset
