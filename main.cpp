@@ -2,6 +2,7 @@
 #include "render.h"
 #include "objects.h"
 #include "defs.h"
+#include "input.h"
 
 int main(int argc, char* argv[])
 {
@@ -19,8 +20,16 @@ int main(int argc, char* argv[])
 		printf("Could not initialize renderer!\n");
 	}
 
+	InputManager input = InputManager();
+
+	if(!input.init())
+	{
+		printf("Could not initialize input!\n");
+	}
+
 	Entity player("Lambert", 2, 4);
 	render.setPlayer(&player);
+	input.setPlayer(&player);
 	
 	#ifdef DEBUG
 	{

@@ -28,9 +28,10 @@ class Entity : public Object
         virtual ~Entity();
 
         e_math::vec3f* getDir() const { return m_dir;}
+
+        void move(const int x, const int y) {}
     protected:
         e_math::vec3f* m_dir;
 };
-
 
 #endif

@@ -81,6 +81,40 @@ void Display::handleInput()
             {
                 close();
             } break;
+            case SDL_KEYDOWN:
+            {
+                switch(event.key.keysym.sym)
+                {
+                    case SDLK_LEFT:
+                    {
+                        printf("Left\n");
+                        InputManager::get().getKey(KEY_LEFT).execute();
+                    } break;
+                    case SDLK_RIGHT:
+                    {
+                        printf("Right\n");
+                        InputManager::get().getKey(KEY_RIGHT).execute();
+                    } break;
+                    case SDLK_UP:
+                    {
+                        printf("Up\n");
+                        InputManager::get().getKey(KEY_UP).execute();
+                    } break;
+                    case SDLK_DOWN:
+                    {
+                        printf("Down\n");
+                        InputManager::get().getKey(KEY_DOWN).execute();
+                    } break;
+                    default:
+                    {
+                        printf("Pressed\n");
+                    } break;
+                }
+            } break;
+            case SDL_KEYUP:
+            {
+
+            } break;
         }
     }
 }

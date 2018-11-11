@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "defs.h"
+#include "input.h"
 
 //Declaration of a data type ends in a semicolon
 class Display
