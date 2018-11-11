@@ -40,6 +40,14 @@ Entity::Entity(const char* name, float x, float y)
     m_dir = new e_math::vec3f(1, 1, 0);
 }
 
+void Entity::move(const int forward, const int rotation)
+{
+    m_dir->rotate2D(5 * rotation);
+
+    e_math::vec3f vel = *m_dir * forward;
+    *m_pos += vel;
+}
+
 Entity::~Entity()
 {
     delete m_dir;

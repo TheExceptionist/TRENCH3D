@@ -29,9 +29,10 @@ class Entity : public Object
 
         e_math::vec3f* getDir() const { return m_dir;}
 
-        void move(const int x, const int y) {}
+        void move(const int forward, const int rotation);// { (*m_pos)[0] += x; (*m_pos)[1] += y;}
     protected:
         e_math::vec3f* m_dir;
+        //e_math::vec3f* m_vel;
 };
 
 #endif
